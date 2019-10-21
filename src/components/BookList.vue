@@ -1,18 +1,24 @@
 <template>
     <div>
     <h1>{{title}}</h1>
+
+    <book-form @addBook='appendBook'></book-form>
+    <hr>
     <ul>
          <book-item v-for="book in books" :book='book'></book-item>
     </ul>
+    
     </div>
 </template>
 
 <script>
 import BookItem from './BookItem'
+import BookForm from './BookForm'
 export default {
     name:'BookList',
     components:{
-        BookItem
+        BookItem,
+        BookForm
     },
     data(){
         return{
@@ -22,6 +28,11 @@ export default {
                     {title: 'American Gods', author: 'Neil Gaiman'},
                     {title: 'Amusing Ourselves to Death', author: 'Neil Postman'},
                 ]
+        }
+    },
+    methods:{
+        appendBook(bookTitle,bookAuthor){
+            this.books.push({title:bookTitle,author:bookAuthor})
         }
     }
 }
